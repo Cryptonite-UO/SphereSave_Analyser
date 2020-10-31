@@ -6,4 +6,8 @@
     <AssemblyName>SphereSave_Analyser</AssemblyName>
     <RootNamespace>SphereSave_Analyser</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+  </ItemGroup>
 </Project>

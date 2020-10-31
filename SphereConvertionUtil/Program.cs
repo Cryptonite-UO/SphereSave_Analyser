@@ -4,6 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Configuration;
+
+
+
 
 namespace SphereConvertionUtil
 {
@@ -11,7 +15,8 @@ namespace SphereConvertionUtil
     {
 
         private static string file = "";
-        private static string dirpath = ""; // Path.GetDirectoryName(file);//dosier de base //System.Reflection.Assembly.GetEntryAssembly().Location;
+        private static string dirpathsave =ConfigurationManager.AppSettings["dirpathsave"];
+        private static string dirpathreport = ConfigurationManager.AppSettings["dirpathreport"];
         private static readonly List<Ligne> linesTowrite = new List<Ligne>();
         private static List<SphereSaveObj> SphereObjs = new List<SphereSaveObj>();
         private static readonly ConsoleSpiner spin = new ConsoleSpiner();
@@ -24,10 +29,11 @@ namespace SphereConvertionUtil
         static void Main(string[] args)
         {
 
-            AskFilePath();
-            file = dirpath + "/sphereworld.scp";
+            //AskFilePath();
+            Console.WriteLine("Ouverture de sphereworld.scp");
+            file = dirpathsave + "/sphereworld.scp";
             PhaseToObj();
-            Console.WriteLine(string.Format("Nombre de maisons: {0}", SphereObjs.Where(o => o.IsHouse).Count()));
+            //Console.WriteLine(string.Format("Nombre de maisons: {0}", SphereObjs.Where(o => o.IsHouse).Count()));
             Console.WriteLine(string.Format("Nombre d'objets : {0}", SphereObjs.Count()));
             Converter();
             ConvertHouse();
@@ -35,7 +41,7 @@ namespace SphereConvertionUtil
             Console.WriteLine("sphereworld.scp converti.");
             //spherechars.scp
             Console.WriteLine("Ouverture de spharechars.scp");
-            file = dirpath + "/spherechars.scp";
+            file = dirpathsave + "/spherechars.scp";
             SphereObjs = new List<SphereSaveObj>();
             PhaseToObj();
             Console.WriteLine(string.Format("Nombre d'objets : {0}", SphereObjs.Count()));
@@ -48,12 +54,12 @@ namespace SphereConvertionUtil
             Console.ReadLine();
         }
 
-        private static void AskFilePath()
-        {
-            Console.WriteLine($"Spécifiez le chemin complet vers les fichiers save");
-            Console.Write("Chemin : ");
-            dirpath = Console.ReadLine();
-        }
+       // private static void AskFilePath()
+        //{
+        //    Console.WriteLine($"Spécifiez le chemin complet vers les fichiers save");
+        //    Console.Write("Chemin : ");
+       //     dirpathsave = Console.ReadLine();
+        //}
 
         private static void PhaseToObj()
         {
@@ -351,7 +357,7 @@ namespace SphereConvertionUtil
         public static void WriteTofile(string fileName, List<SphereSaveObj> objs)
         {
             int objnum = 0;
-            string filePath = dirpath + fileName;
+            string filePath = dirpathreport + fileName;
             StringBuilder stringbuilder = new StringBuilder();
             Console.Write("Écriture en cours...");
             stringbuilder.Append(Headers + Environment.NewLine);
