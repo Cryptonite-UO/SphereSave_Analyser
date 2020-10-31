@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SphereSave_Analyser", "SphereConvertionUtil\SphereSave_Analyser.csproj", "{65D85BFE-1735-4441-8EA2-C4888507D0D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SphereSave_Analyser", "SphereSave_Analyser\SphereSave_Analyser.csproj", "{65D85BFE-1735-4441-8EA2-C4888507D0D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

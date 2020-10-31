@@ -1,5 +1,6 @@
 ﻿using System;
-namespace SphereConvertionUtil
+
+namespace SphereSave_Analyser
 {
     public class Ligne
     {
