@@ -11,7 +11,7 @@ namespace SphereConvertionUtil
     {
 
         private static string file = "";
-        private static string dirpath = ""; // Path.GetDirectoryName(file);//dosier de base //System.Reflection.Assembly.GetEntryAssembly().Location;
+
         private static readonly List<Ligne> linesTowrite = new List<Ligne>();
         private static List<SphereSaveObj> SphereObjs = new List<SphereSaveObj>();
         private static readonly ConsoleSpiner spin = new ConsoleSpiner();
@@ -23,48 +23,47 @@ namespace SphereConvertionUtil
 
         static void Main(string[] args)
         {
-
-            AskFilePath();
-            file = dirpath + "/sphereworld.scp";
+#region Sphere World
+            file = "/save/sphereworld.scp";
             PhaseToObj();
             Console.WriteLine(string.Format("Nombre de maisons: {0}", SphereObjs.Where(o => o.IsHouse).Count()));
             Console.WriteLine(string.Format("Nombre d'objets : {0}", SphereObjs.Count()));
             Converter();
             ConvertHouse();
-            WriteTofile("/sphereworld_new.scp", SphereObjs);
+            //WriteTofile("/sphereworld_new.scp", SphereObjs);
             Console.WriteLine("sphereworld.scp converti.");
-            //spherechars.scp
             Console.WriteLine("Ouverture de spharechars.scp");
-            file = dirpath + "/spherechars.scp";
+            #endregion
+#region Sphere Chars
+            file = "/save/spherechars.scp";
             SphereObjs = new List<SphereSaveObj>();
             PhaseToObj();
             Console.WriteLine(string.Format("Nombre d'objets : {0}", SphereObjs.Count()));
             Converter();
-            WriteTofile("/spherechars_new.scp", SphereObjs);
+            //WriteTofile("/spherechars_new.scp", SphereObjs);
             Console.WriteLine("spherechars.scp converti.");
             Console.WriteLine($"Quantité d'or en jeu: {goldAmount.ToString("#,##0")} !");
             Console.WriteLine("Opération terminée.");
-
+#endregion
             Console.ReadLine();
-        }
-
-        private static void AskFilePath()
-        {
-            Console.WriteLine($"Spécifiez le chemin complet vers les fichiers save");
-            Console.Write("Chemin : ");
-            dirpath = Console.ReadLine();
         }
 
         private static void PhaseToObj()
         {
             bool found = false;
-
+            var filepath = Directory.GetCurrentDirectory() + file;
 
             Console.Write("Chargement ... ");
 
             int objnum = -1;
             int linecount = 0;
-            foreach (string line in File.ReadAllLines(file))
+            if(!File.Exists(filepath))
+            {
+                Console.WriteLine();
+                Console.WriteLine(@"Fichier manquant : {0}",filepath);
+                return;
+            }
+            foreach (string line in File.ReadAllLines(filepath))
             {
                 if (linecount < 4)
                 {
@@ -91,10 +90,6 @@ namespace SphereConvertionUtil
 
                     var obj = new SphereSaveObj(type, id);
 
-                    //if (line.StartsWith("[WORLDITEM i_multi_", StringComparison.Ordinal))
-                    //{
-
-                    //}
                     SphereObjs.Add(obj);
                     continue;
                 }
@@ -351,7 +346,7 @@ namespace SphereConvertionUtil
         public static void WriteTofile(string fileName, List<SphereSaveObj> objs)
         {
             int objnum = 0;
-            string filePath = dirpath + fileName;
+            string filePath = fileName;
             StringBuilder stringbuilder = new StringBuilder();
             Console.Write("Écriture en cours...");
             stringbuilder.Append(Headers + Environment.NewLine);
