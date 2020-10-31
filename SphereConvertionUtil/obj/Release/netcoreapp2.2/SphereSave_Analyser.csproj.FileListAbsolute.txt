@@ -1,0 +1,11 @@
+C:\Spheresave_analyser\SphereConvertionUtil\bin\Release\netcoreapp2.2\SphereSave_Analyser.deps.json
+C:\Spheresave_analyser\SphereConvertionUtil\bin\Release\netcoreapp2.2\SphereSave_Analyser.runtimeconfig.json
+C:\Spheresave_analyser\SphereConvertionUtil\bin\Release\netcoreapp2.2\SphereSave_Analyser.runtimeconfig.dev.json
+C:\Spheresave_analyser\SphereConvertionUtil\bin\Release\netcoreapp2.2\SphereSave_Analyser.dll
+C:\Spheresave_analyser\SphereConvertionUtil\bin\Release\netcoreapp2.2\SphereSave_Analyser.pdb
+C:\Spheresave_analyser\SphereConvertionUtil\obj\Release\netcoreapp2.2\SphereSave_Analyser.AssemblyInfoInputs.cache
+C:\Spheresave_analyser\SphereConvertionUtil\obj\Release\netcoreapp2.2\SphereSave_Analyser.AssemblyInfo.cs
+C:\Spheresave_analyser\SphereConvertionUtil\obj\Release\netcoreapp2.2\SphereSave_Analyser.csproj.CoreCompileInputs.cache
+C:\Spheresave_analyser\SphereConvertionUtil\obj\Release\netcoreapp2.2\SphereSave_Analyser.dll
+C:\Spheresave_analyser\SphereConvertionUtil\obj\Release\netcoreapp2.2\SphereSave_Analyser.pdb
+C:\Spheresave_analyser\SphereConvertionUtil\obj\Release\netcoreapp2.2\SphereSave_Analyser.genruntimeconfig.cache
