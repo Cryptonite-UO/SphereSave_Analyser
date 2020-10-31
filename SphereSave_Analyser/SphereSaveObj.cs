@@ -8,7 +8,6 @@ namespace SphereSave_Analyser
         public SphereSaveObj(string type, string id)
         {
             Props = new List<string[]>();
-            PropsKey = new List<KeyValuePair<string, string>>();
             Type = type;
             Id = id;
         }
@@ -44,12 +43,6 @@ namespace SphereSave_Analyser
         }
 
         public List<string[]> Props
-        {
-            get;
-            set;
-        }
-
-        public List<KeyValuePair<String, String>> PropsKey
         {
             get;
             set;
