@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SphereConvertionUtil
+namespace SphereSave_Analyser
 {
     public class SphereSaveObj
     {

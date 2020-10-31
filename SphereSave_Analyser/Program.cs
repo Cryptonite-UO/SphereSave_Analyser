@@ -9,7 +9,7 @@ using System.Configuration;
 
 
 
-namespace SphereConvertionUtil
+namespace SphereSave_Analyser
 {
     class Program
     {
