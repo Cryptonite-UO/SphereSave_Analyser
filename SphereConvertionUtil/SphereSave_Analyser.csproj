@@ -1,9 +1,0 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
-    <OutputType>Exe</OutputType>
-    <AssemblyName>SphereSave_Analyser</AssemblyName>
-    <RootNamespace>SphereSave_Analyser</RootNamespace>
-  </PropertyGroup>
-</Project>
