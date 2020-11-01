@@ -23,6 +23,7 @@ namespace SphereSave_Analyser
             try
             {
                 reader.ReadFileToObj(dirpathsave + "/sphereworld.scp", SphereFileType.SphereWorld);
+                reader.ReadFileToObj(dirpathsave + "/spherechars.scp", SphereFileType.SphereChars);
             }
             catch (Exception e)
             {
@@ -43,7 +44,7 @@ namespace SphereSave_Analyser
 
             Console.WriteLine("Il y yas {0} gold en jeu", amount);
 
-            var query = from item in reader.WorldItems
+            var query = from item in reader.WorldCharacters
                         group item.id by item.id into g
                         let count = g.Count()
                         orderby count descending
