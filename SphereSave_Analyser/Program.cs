@@ -57,16 +57,20 @@ namespace SphereSave_Analyser
                 }
             }
 
+            var skills = from obj in reader.WorldCharacters
+                       where obj.healing >= 1500
+                       select obj;
+
+            foreach (var o in skills)
+            {
+                Console.WriteLine($"Le personnage {o.name} a {o.healing} de Healing");
+            }
+
             var anvils = from obj in reader.WorldItems
                        where obj.id == "i_anvil"
                        select obj;
 
             Console.WriteLine($"il y as {anvils.Count()} anvil dans le monde");
-
-            foreach (var o in anvils)
-            {
-                Console.WriteLine($"Situer a : {o.p}");
-            }
 
             Console.ReadLine();
         }
