@@ -56,6 +56,18 @@ namespace SphereSave_Analyser
                     Console.WriteLine("id: " + x.Id + " Count: " + x.Nombre);
                 }
             }
+
+            var anvils = from obj in reader.WorldItems
+                       where obj.id == "i_anvil"
+                       select obj;
+
+            Console.WriteLine($"il y as {anvils.Count()} anvil dans le monde");
+
+            foreach (var o in anvils)
+            {
+                Console.WriteLine($"Situer a : {o.p}");
+            }
+
             Console.ReadLine();
         }
     }
