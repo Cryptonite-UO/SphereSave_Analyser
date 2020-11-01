@@ -163,6 +163,7 @@ namespace SphereSave_Analyser
 
         public BaseSphereObj(string id)
         {
+            this.id = id;
         }
     }
 
@@ -190,6 +191,8 @@ namespace SphereSave_Analyser
 
     public class SphereFileReader
     {
+        public bool AutoGenCode; //si trouve des nouvelle propriter va generer le code pour le traduire
+
         public List<WorldChar> WorldCharacters;
 
         public List<WorldItem> WorldItems;
@@ -202,21 +205,15 @@ namespace SphereSave_Analyser
             WorldItems = new List<WorldItem>();
         }
 
-        public void ReadSaveFileToObj(string file)
+        private void ReadSaveFileToObj(string file)
         {
-
-            string header = "";
-            int linecount = 0;
-            bool found = false;
             BlockType type = BlockType.Unknown;
+
+            if (!File.Exists(file))
+                throw new Exception($"Le fichier spécifié n'existe pas : {file}");
 
             foreach (string line in File.ReadAllLines(file))
             {
-                if (linecount < 4)
-                {
-                    header += line + "\n";
-                }
-
                 if (line.StartsWith("[EOF]", StringComparison.Ordinal))
                 {
                     break;
@@ -255,13 +252,11 @@ namespace SphereSave_Analyser
 
                 if (String.IsNullOrEmpty(line))
                 {
-                    found = false;
                     type = BlockType.Unknown;
                     continue;
                 }
-                linecount++;
             }
-            if (notfound.Keys.Count > 0)
+            if (notfound.Keys.Count > 0 && AutoGenCode)
              {
                 string autogenprop = $"//##############Code-Auto-Gen-Proprities#################\n";
                 string autogencase = $"//##############Code-Auto-Gen-Case#################";
