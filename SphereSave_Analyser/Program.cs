@@ -38,8 +38,7 @@ namespace SphereSave_Analyser
             int amount = 1;
             foreach (var o in gold)
             {
-                if (!String.IsNullOrEmpty(o.amount))
-                    amount += int.Parse(o.amount);
+                    amount += o.amount;
             }
 
             Console.WriteLine("Il y yas {0} gold en jeu", amount);
