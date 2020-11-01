@@ -67,7 +67,7 @@ namespace SphereSave_Analyser
         public string more2;
         public string morep;
         public int layer;
-        public string cont;
+        public int cont;
         public string name;
         public string home;
         public int herding;
@@ -205,7 +205,15 @@ namespace SphereSave_Analyser
 
     public class WorldChar : BaseSphereObj
     {
-        public bool IsPlayer;
+        public int TotalGold;
+
+        public bool IsPlayer
+        {
+            get
+            {
+                return !String.IsNullOrEmpty(account);
+            }
+        }
 
 
 
@@ -785,7 +793,7 @@ namespace SphereSave_Analyser
                     }
                     break;
                 case "CONT":
-                    string cont = value; //TODO: convert ex value. 01b7392
+                    int cont = StringHexToInt(value);
                     if (blocktype == BlockType.WorldItem)
                     {
                         WorldItems[ptr].cont = cont;

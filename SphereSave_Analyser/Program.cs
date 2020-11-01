@@ -15,11 +15,12 @@ namespace SphereSave_Analyser
     {
         private static string dirpathsave =ConfigurationManager.AppSettings["dirpathsave"];
         private static string dirpathreport = ConfigurationManager.AppSettings["dirpathreport"];
+        private static SphereFileReader reader;
 
         static void Main(string[] args)
         {
 
-            SphereFileReader reader = new SphereFileReader();
+            reader = new SphereFileReader();
             try
             {
                 reader.ReadFileToObj(dirpathsave + "/sphereworld.scp", SphereFileType.SphereWorld);
@@ -112,7 +113,58 @@ namespace SphereSave_Analyser
 
             Console.WriteLine($"il y as {anvils.Count()} anvil dans le monde");
 
+            //********************Get item For Account *********************
+            GetItemForAccount("Dixonzegm");
+
             Console.ReadLine();
+        }
+
+        //********************Get item For Account *********************
+        public static void GetItemForAccount(string account)
+        {
+            Console.WriteLine($"Liste les personages et item de l'account {account}");
+
+            foreach (WorldChar c in reader.WorldCharacters.Where(x => x.IsPlayer && x.account.Contains(account)))
+            {
+                var itemforuid = from obj in reader.WorldItems
+                                 where obj.cont == c.serial
+                                 select obj;
+                Console.WriteLine($"Le personnage {c.name}");
+
+                GetAllItemsForContainer(c.serial);
+                        
+                Console.WriteLine($"Le nombre totale d'or de ce personage est : {GetTotalGoldForCharacter(c.serial)}");
+            }
+        }
+
+        public static void GetAllItemsForContainer(int cont)
+        {
+            var itemforuid = from obj in reader.WorldItems
+                             where obj.cont == cont
+                             select obj;
+            foreach (var o in itemforuid)
+            {
+                GetAllItemsForContainer(o.serial);
+                Console.WriteLine($"a {o.amount + 1} de {o.id}");
+            }
+            
+        }
+
+        public static int GetTotalGoldForCharacter(int cont)
+        {
+            int totalgold = 0;
+            var itemforuid = from obj in reader.WorldItems
+                             where obj.cont == cont
+                             select obj;
+            foreach (var o in itemforuid)
+            {
+                if (o.id == "i_gold")
+                {
+                    totalgold += o.amount;
+                }
+                totalgold += GetTotalGoldForCharacter(o.serial);
+            }
+            return totalgold;
         }
     }
 
