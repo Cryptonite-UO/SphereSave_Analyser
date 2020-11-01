@@ -374,7 +374,7 @@ namespace SphereSave_Analyser
             switch (key)//baseobject
             {
                 case "SERIAL":
-                    int serial = StringHexToInt(value);
+                    int serial = Util.StringHexToInt(value);
                     if (serial == 0)
                     {
                         throw new Exception("le Serial ne peut être 0");
@@ -397,7 +397,7 @@ namespace SphereSave_Analyser
                     }
                     break;
                 case "COLOR":
-                    int color = StringHexToInt(value);
+                    int color = Util.StringHexToInt(value);
                     if (blocktype == BlockType.WorldItem)
                     {
                         WorldItems[ptr].color = color;
@@ -441,7 +441,7 @@ namespace SphereSave_Analyser
                     }
                     break;
                 case "ACTPRI":
-                    int actpri = StringHexToInt(value);
+                    int actpri = Util.StringHexToInt(value);
                     if (blocktype == BlockType.WorldItem)
                     {
                         WorldItems[ptr].actpri = actpri;
@@ -474,7 +474,7 @@ namespace SphereSave_Analyser
                     }
                     break;
                 case "OSKIN":
-                    int oskin = StringHexToInt(value);
+                    int oskin = Util.StringHexToInt(value);
                     if (blocktype == BlockType.WorldItem)
                     {
                         WorldItems[ptr].oskin = oskin;
@@ -485,7 +485,7 @@ namespace SphereSave_Analyser
                     }
                     break;
                 case "FLAGS":
-                    int flags = StringHexToInt(value);
+                    int flags = Util.StringHexToInt(value);
                     if (blocktype == BlockType.WorldItem)
                     {
                         WorldItems[ptr].flags = flags;
@@ -540,7 +540,7 @@ namespace SphereSave_Analyser
                     }
                     break;
                 case "ACTARG2":
-                    int actarg2 = StringHexToInt(value);
+                    int actarg2 = Util.StringHexToInt(value);
                     if (blocktype == BlockType.WorldItem)
                     {
                         WorldItems[ptr].actarg2 = actarg2;
@@ -727,7 +727,7 @@ namespace SphereSave_Analyser
                     }
                     break;
                 case "LINK":
-                    int link = StringHexToInt(value);
+                    int link = Util.StringHexToInt(value);
                     if (blocktype == BlockType.WorldItem)
                     {
                         WorldItems[ptr].link = link;
@@ -738,7 +738,7 @@ namespace SphereSave_Analyser
                     }
                     break;
                 case "ATTR":
-                    int attr = StringHexToInt(value);
+                    int attr = Util.StringHexToInt(value);
                     if (blocktype == BlockType.WorldItem)
                     {
                         WorldItems[ptr].attr = attr;
@@ -793,7 +793,7 @@ namespace SphereSave_Analyser
                     }
                     break;
                 case "CONT":
-                    int cont = StringHexToInt(value);
+                    int cont = Util.StringHexToInt(value);
                     if (blocktype == BlockType.WorldItem)
                     {
                         WorldItems[ptr].cont = cont;
@@ -903,7 +903,7 @@ namespace SphereSave_Analyser
                     }
                     break;
                 case "ACTARG3":
-                    int actarg3 = StringHexToInt(value);
+                    int actarg3 = Util.StringHexToInt(value);
                     if (blocktype == BlockType.WorldItem)
                     {
                         WorldItems[ptr].actarg3 = actarg3;
@@ -2129,12 +2129,7 @@ namespace SphereSave_Analyser
                     break;
             }
         }
-
-        private int StringHexToInt(string s)
-        {
-            return int.Parse(s, System.Globalization.NumberStyles.HexNumber);
-        }
-
+          
         public void ReadFileToObj(string file, SphereFileType spherefiletype)
         {
             switch(spherefiletype)

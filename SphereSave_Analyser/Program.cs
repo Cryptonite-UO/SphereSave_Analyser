@@ -7,14 +7,11 @@ using System.Text.RegularExpressions;
 using System.Configuration;
 
 
-
-
 namespace SphereSave_Analyser
 {
     class Program
     {
         private static string dirpathsave =ConfigurationManager.AppSettings["dirpathsave"];
-        private static string dirpathreport = ConfigurationManager.AppSettings["dirpathreport"];
         private static SphereFileReader reader;
 
         static void Main(string[] args)
@@ -38,26 +35,28 @@ namespace SphereSave_Analyser
                        select obj;
 
             int amount = 1;
+            int amount2 = 0;
+            int amountcheque = 0;
             foreach (var o in gold)
             {
                     amount += o.amount;
             }
 
-            Console.WriteLine("Il y a {0} gold en jeu", amount);
-
-            var cheque = from obj in reader.WorldItems
+           var cheque = from obj in reader.WorldItems
                        where obj.id == "i_bank_check"
                        select obj;
-            int amount2 = 0;
 
             foreach (var c in cheque)
             {
-                amount2 += c.amount; //Todo. Multiplié la amount par le more 1(valeur du cheque) Le more1 est en string....
+                amount += c.amount * Util.StringHexToInt(c.more1);
+                amount2 += c.amount * Util.StringHexToInt(c.more1);
+                amountcheque += c.amount;
             }
 
+            Console.WriteLine("There is {0} gold in the game", amount);
             if (amount2 != 0)
             {
-                Console.WriteLine("Il y a {0} gold en cheque en jeu", amount2);
+                Console.WriteLine("Including {1} gold split between {0} check", amountcheque, amount2);
             }
 
 
