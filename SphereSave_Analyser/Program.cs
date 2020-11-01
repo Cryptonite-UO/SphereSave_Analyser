@@ -29,8 +29,9 @@ namespace SphereSave_Analyser
             {
                 Console.WriteLine("Exeption : {0}",e);
             }
-            //Faire des demande dans la liste d'object
+            //At this point, you can script specific demand
 
+            //********************CALCULATION OF GOLD IN THE GAME*********************
             var gold = from obj in reader.WorldItems
                        where obj.id == "i_gold"
                        select obj;
@@ -41,15 +42,33 @@ namespace SphereSave_Analyser
                     amount += o.amount;
             }
 
-            Console.WriteLine("Il y yas {0} gold en jeu", amount);
+            Console.WriteLine("Il y a {0} gold en jeu", amount);
 
-            var query = from item in reader.WorldCharacters
+            var cheque = from obj in reader.WorldItems
+                       where obj.id == "i_bank_check"
+                       select obj;
+            int amount2 = 0;
+
+            foreach (var c in cheque)
+            {
+                amount2 += c.amount; //Todo. Multiplié la amount par le more 1(valeur du cheque) Le more1 est en string....
+            }
+
+            if (amount2 != 0)
+            {
+                Console.WriteLine("Il y a {0} gold en cheque en jeu", amount2);
+            }
+
+
+            //********************Sort list of item*********************
+            Console.WriteLine("****************************************************");
+            var queryitem = from item in reader.WorldItems
                         group item.id by item.id into g
                         let count = g.Count()
                         orderby count descending
                         select new { Id = g.Key, Nombre = count };
 
-            foreach (var x in query)
+            foreach (var x in queryitem)
             {
                 if (x.Nombre > 100)
                 {
@@ -57,6 +76,25 @@ namespace SphereSave_Analyser
                 }
             }
 
+            //********************Sort list of character*********************
+            Console.WriteLine("****************************************************");
+            var querychar = from item in reader.WorldCharacters
+                        group item.id by item.id into g
+                        let count = g.Count()
+                        orderby count descending
+                        select new { Id = g.Key, Nombre = count };
+
+            foreach (var x in querychar)
+            {
+                if (x.Nombre > 100)
+                {
+                    Console.WriteLine("id: " + x.Id + " Count: " + x.Nombre);
+                }
+            }
+
+
+            //********************List all character with a specific skill*********************
+            Console.WriteLine("****************************************************");
             var skills = from obj in reader.WorldCharacters
                        where obj.healing >= 1500
                        select obj;
@@ -66,6 +104,8 @@ namespace SphereSave_Analyser
                 Console.WriteLine($"Le personnage {o.name} a {o.healing} de Healing");
             }
 
+            //********************Make a specific count of an item*********************
+            Console.WriteLine("****************************************************");
             var anvils = from obj in reader.WorldItems
                        where obj.id == "i_anvil"
                        select obj;
