@@ -160,6 +160,34 @@ namespace SphereSave_Analyser
         public string price;
         public string title;
         public string speech;
+        //####### AUTO GEN CHAR
+        public string pin;
+        public string align;
+        public string abbrev;
+        public string account;
+        public string deaths;
+        public string skillclass;
+        public string kills;
+        public string dspeech;
+        public string profile;
+        public string speechcolor;
+        public string emotecolor;
+        public string stepstealth;
+        public string modmaxhits;
+        public string modmaxmana;
+        public string modmaxstam;
+        public string speedmode;
+        public string font;
+        public string maxfollower;
+        public string increasedefchancemax;
+        public string rescoldmax;
+        public string resenergymax;
+        public string resfiremax;
+        public string resphysicalmax;
+        public string respoisonmax;
+        public string nightsight;
+        public string exp;
+        public string refusetrades;
 
         public BaseSphereObj(string id)
         {
@@ -177,6 +205,8 @@ namespace SphereSave_Analyser
     public class WorldChar : BaseSphereObj
     {
         public bool IsPlayer;
+
+
 
         public WorldChar(string id) : base(id)
         {
@@ -284,10 +314,13 @@ namespace SphereSave_Analyser
 
         private void MapPropToObj(BlockType blocktype,string[] prop)
         {
-            if (prop[0].Split('.').Length > 1)
-                return;//ignore les tag mais quoi d'autres ? //TAG.xxx
             string key = prop[0].ToUpper();
             string value = "";
+            if (key.Contains("CHARTER") || key.Contains("MEMBER")
+                || key.Contains("SKILLLOCK") || key.Contains("STATLOCK"))
+                return;//livre,guild,statlock et skilllock non supporté
+            if (key.Split('.').Length > 1)
+                return;//ignore les tag mais quoi d'autres ? //TAG.xxx
             if (prop.Length > 1)
                 value = prop[1];
             int ptr = 0;
@@ -1751,7 +1784,304 @@ namespace SphereSave_Analyser
                         WorldCharacters[ptr].speech = speech;
                     }
                     break;
-
+                //##############Code-Auto-Gen-Case#################
+                case "PIN":
+                    string pin = value; //TODO: convert ex value. 105,105
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].pin = pin;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].pin = pin;
+                    }
+                    break;
+                case "ALIGN":
+                    string align = value; //TODO: convert ex value. 0
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].align = align;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].align = align;
+                    }
+                    break;
+                case "ABBREV":
+                    string abbrev = value; //TODO: convert ex value. Veladorn
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].abbrev = abbrev;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].abbrev = abbrev;
+                    }
+                    break;
+                case "ACCOUNT":
+                    string account = value; //TODO: convert ex value. cdumdum
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].account = account;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].account = account;
+                    }
+                    break;
+                case "DEATHS":
+                    string deaths = value; //TODO: convert ex value. 101
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].deaths = deaths;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].deaths = deaths;
+                    }
+                    break;
+                case "SKILLCLASS":
+                    string skillclass = value; //TODO: convert ex value. nainsnovole
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].skillclass = skillclass;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].skillclass = skillclass;
+                    }
+                    break;
+                case "KILLS":
+                    string kills = value; //TODO: convert ex value. 1
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].kills = kills;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].kills = kills;
+                    }
+                    break;
+                case "DSPEECH":
+                    string dspeech = value; //TODO: convert ex value. spk_guildspeech
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].dspeech = dspeech;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].dspeech = dspeech;
+                    }
+                    break;
+                case "PROFILE":
+                    string profile = value; //TODO: convert ex value. 50 peacemaking\r50 discordance
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].profile = profile;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].profile = profile;
+                    }
+                    break;
+                case "SPEECHCOLOR":
+                    string speechcolor = value; //TODO: convert ex value. 690
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].speechcolor = speechcolor;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].speechcolor = speechcolor;
+                    }
+                    break;
+                case "EMOTECOLOR":
+                    string emotecolor = value; //TODO: convert ex value. 33
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].emotecolor = emotecolor;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].emotecolor = emotecolor;
+                    }
+                    break;
+                case "STEPSTEALTH":
+                    string stepstealth = value; //TODO: convert ex value. -1
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].stepstealth = stepstealth;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].stepstealth = stepstealth;
+                    }
+                    break;
+                case "MODMAXHITS":
+                    string modmaxhits = value; //TODO: convert ex value. 33
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].modmaxhits = modmaxhits;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].modmaxhits = modmaxhits;
+                    }
+                    break;
+                case "MODMAXMANA":
+                    string modmaxmana = value; //TODO: convert ex value. 19
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].modmaxmana = modmaxmana;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].modmaxmana = modmaxmana;
+                    }
+                    break;
+                case "MODMAXSTAM":
+                    string modmaxstam = value; //TODO: convert ex value. 97
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].modmaxstam = modmaxstam;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].modmaxstam = modmaxstam;
+                    }
+                    break;
+                case "SPEEDMODE":
+                    string speedmode = value; //TODO: convert ex value. 1
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].speedmode = speedmode;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].speedmode = speedmode;
+                    }
+                    break;
+                case "FONT":
+                    string font = value; //TODO: convert ex value. 8
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].font = font;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].font = font;
+                    }
+                    break;
+                case "MAXFOLLOWER":
+                    string maxfollower = value; //TODO: convert ex value. 5
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].maxfollower = maxfollower;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].maxfollower = maxfollower;
+                    }
+                    break;
+                case "INCREASEDEFCHANCEMAX":
+                    string increasedefchancemax = value; //TODO: convert ex value. 45
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].increasedefchancemax = increasedefchancemax;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].increasedefchancemax = increasedefchancemax;
+                    }
+                    break;
+                case "RESCOLDMAX":
+                    string rescoldmax = value; //TODO: convert ex value. 70
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].rescoldmax = rescoldmax;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].rescoldmax = rescoldmax;
+                    }
+                    break;
+                case "RESENERGYMAX":
+                    string resenergymax = value; //TODO: convert ex value. 70
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].resenergymax = resenergymax;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].resenergymax = resenergymax;
+                    }
+                    break;
+                case "RESFIREMAX":
+                    string resfiremax = value; //TODO: convert ex value. 70
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].resfiremax = resfiremax;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].resfiremax = resfiremax;
+                    }
+                    break;
+                case "RESPHYSICALMAX":
+                    string resphysicalmax = value; //TODO: convert ex value. 70
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].resphysicalmax = resphysicalmax;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].resphysicalmax = resphysicalmax;
+                    }
+                    break;
+                case "RESPOISONMAX":
+                    string respoisonmax = value; //TODO: convert ex value. 70
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].respoisonmax = respoisonmax;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].respoisonmax = respoisonmax;
+                    }
+                    break;
+                case "NIGHTSIGHT":
+                    string nightsight = value; //TODO: convert ex value. 1
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].nightsight = nightsight;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].nightsight = nightsight;
+                    }
+                    break;
+                case "EXP":
+                    string exp = value; //TODO: convert ex value. 100
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].exp = exp;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].exp = exp;
+                    }
+                    break;
+                case "REFUSETRADES":
+                    string refusetrades = value; //TODO: convert ex value. 1
+                    if (blocktype == BlockType.WorldItem)
+                    {
+                        WorldItems[ptr].refusetrades = refusetrades;
+                    }
+                    else if (blocktype == BlockType.WorldChar)
+                    {
+                        WorldCharacters[ptr].refusetrades = refusetrades;
+                    }
+                    break;
                 default:
                     notfound.TryAdd(key.ToUpper(), value);
                     break;
