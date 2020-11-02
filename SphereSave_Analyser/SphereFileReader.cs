@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 
 namespace SphereSave_Analyser
@@ -201,6 +202,11 @@ namespace SphereSave_Analyser
         public WorldItem(string id) : base(id)
         {
         }
+
+        public override string ToString()
+        {
+            return $"{amount} {id}";
+        }
     }
 
     public class WorldChar : BaseSphereObj
@@ -224,12 +230,15 @@ namespace SphereSave_Analyser
 
         public override string ToString()
         {
+            if (IsPlayer)
+                return name;
             return base.id;
         }
     }
 
     public class SphereFileReader
     {
+        public string dirpathsave = ConfigurationManager.AppSettings["dirpathsave"];
         public bool AutoGenCode; //si trouve des nouvelle propriter va generer le code pour le traduire
 
         public List<WorldChar> WorldCharacters;
