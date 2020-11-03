@@ -11,7 +11,6 @@ namespace SphereSave_Analyser
 {
     class Program
     {
-        private static string dirpathsave =ConfigurationManager.AppSettings["dirpathsave"];
         private static SphereFileReader reader;
 
         static void Main(string[] args)
@@ -20,8 +19,8 @@ namespace SphereSave_Analyser
             reader = new SphereFileReader();
             try
             {
-                reader.ReadFileToObj(dirpathsave + "/sphereworld.scp", SphereFileType.SphereWorld);
-                reader.ReadFileToObj(dirpathsave + "/spherechars.scp", SphereFileType.SphereChars);
+                reader.ReadFileToObj(reader.dirpathsave + "/sphereworld.scp", SphereFileType.SphereWorld);
+                reader.ReadFileToObj(reader.dirpathsave + "/spherechars.scp", SphereFileType.SphereChars);
             }
             catch (Exception e)
             {
