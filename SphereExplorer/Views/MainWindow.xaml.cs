@@ -23,7 +23,6 @@ namespace SphereExplorer.Views
         public MainWindow()
         {
             InitializeComponent();
-            GetPath();
         }
 
         private void InitializeComponent()
@@ -37,64 +36,6 @@ namespace SphereExplorer.Views
             ListAccs.SelectionChanged += ListAccs_SelectionChanged;
             ListChars.SelectionChanged += ListChars_SelectionChanged;            
         }
-
-        public async Task GetPath()
-        {
-            var dlg = new OpenFileDialog();
-            dlg.Filters.Add(new FileDialogFilter() { Name = "Sphere file", Extensions = { "scp" } });
-            dlg.AllowMultiple = true;
-
-            var dialog = await dlg.ShowAsync(this);
-            if (dialog != null)
-            {
-                await GetPath(dialog);
-            }
-        }
-
-        public async Task GetPath(string [] path)
-        {
-            foreach (string s in path)
-            { 
-                reader.ReadFileToObj(s, SphereFileType.SphereWorld);
-            }
-            ReloadData();
-        }
-
-        private void ReloadData()
-        {
-            var query = reader.WorldCharacters.GroupBy(x => x.account);
-
-            List<Account> accounts = new List<Account>();
-
-            foreach (var x in query)
-            {
-                Account acc = new Account
-                {
-                    Name = x.Key
-                };
-                foreach (var c in x)
-                {
-                    acc.Characters.Add(c);
-                }
-                accounts.Add(acc);
-            }
-            ListAccs.Items = new ObservableCollection<Account>(accounts.OrderBy(x => x.Name));
-            ListStatic.Items = GetAllStaticItems();
-        }
-
-        public ObservableCollection<WorldItem> GetAllStaticItems()
-        {
-            var colection = new ObservableCollection<WorldItem>();
-            foreach (var c in reader.WorldItems)
-            {
-                if ((c.attr & (int)Flags.ATTR_STATIC) > 0)
-                {
-                    colection.Add(c);
-                }
-            }
-            return colection;
-        }
-
 
         private void ListChars_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

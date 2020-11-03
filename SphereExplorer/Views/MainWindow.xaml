@@ -4,15 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         x:Class="SphereExplorer.Views.MainWindow"
-        Width="550" Height="280"
+        Width="550" Height="300" MinHeight="300"
         Icon="/Assets/avalonia-logo.ico"
         Title="Sphere Save Explorer">
 <Window.Styles>
 
           <Style Selector="TabControl">
             <Setter Property="Background" Value="#F0F0F0"/>
-            <Setter Property="Height" Value="280"/>
-            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="MinHeight" Value="280"/>
           </Style>
           <Style Selector="TabControl WrapPanel">
             <Setter Property="Background" Value="#2B579A"/>
@@ -50,10 +49,21 @@
           </Style>
 
         </Window.Styles>
-        <TabControl>
+        <DockPanel LastChildFill="True">
+          <Menu DockPanel.Dock="Top">
+              <MenuItem Header="_File">
+                  <MenuItem Command="{Binding OpenCommand}" Header="_Open Sphere Directory"/>
+                  <Separator/>
+                  <MenuItem Header="_Exit"/>
+              </MenuItem>
+          </Menu>
+        <TabControl DockPanel.Dock="Bottom">
           <TabItem Header="Accounts" VerticalContentAlignment="Center">
             <StackPanel Orientation="Horizontal">
-              <ListBox Name="lstAccs" HorizontalAlignment="Left" Items="{Binding Accounts}"  Width="150" Height="200"/>
+              <StackPanel Margin="5 0 0 0">
+                <TextBlock Text="Accounts" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <ListBox Name="lstAccs" HorizontalAlignment="Left" Items="{Binding Accounts}"  Width="150" Height="200"/>
+              </StackPanel>
               <StackPanel Margin="5 0 0 0">
                 <TextBlock Text="Characters" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <ListBox Name="lstChars"  Items="{Binding WorldPerso}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="190"/>
@@ -104,4 +114,5 @@
             </StackPanel>
           </TabItem>
         </TabControl>
+        </DockPanel>
 </Window>
