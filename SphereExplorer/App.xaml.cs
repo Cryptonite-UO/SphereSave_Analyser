@@ -9,6 +9,8 @@ namespace SphereExplorer
 {
     public class App : Application
     {
+        public SphereFileReader Reader { get; set; }
+
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
@@ -18,13 +20,13 @@ namespace SphereExplorer
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                SphereFileReader reader = new SphereFileReader();
-                reader.ReadFileToObj(reader.dirpathsave + "/spherechars.scp", SphereFileType.SphereWorld);
-                reader.ReadFileToObj(reader.dirpathsave +  "/sphereworld.scp", SphereFileType.SphereWorld);
+                Reader = new SphereFileReader();
+                //reader.ReadFileToObj("/Users/jmmiljours/Documents/Cryptonite/dossier sans titre/spherechars.scp", SphereFileType.SphereWorld);
+                //reader.ReadFileToObj("/Users/jmmiljours/Documents/Cryptonite/dossier sans titre/sphereworld.scp", SphereFileType.SphereWorld);
 
                 desktop.MainWindow = new MainWindow
                 {
-                    DataContext = new MainWindowViewModel(reader),
+                    DataContext = new MainWindowViewModel(Reader),
                 };
             }
 

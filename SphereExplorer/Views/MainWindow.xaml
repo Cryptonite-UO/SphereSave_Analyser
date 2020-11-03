@@ -68,10 +68,22 @@
             <TabItem.Header>
               <TextBlock VerticalAlignment="Center">WorldItems</TextBlock>
             </TabItem.Header>
-            <StackPanel>
-              <TextBlock Text="I am in the triangle page ! I'll put a button to show you that each page contains what you want." HorizontalAlignment="Left" VerticalAlignment="Center"/>
-              <Button>A button in the triangle page !</Button>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Margin="5 0 0 0">
+                  <TextBlock Text="Static items" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                  <ListBox Name="lstStatic" HorizontalAlignment="Left" Items="{Binding StaticItems}"  Width="150" Height="200"/>
+                </StackPanel>
             </StackPanel>
+              <!--
+              <StackPanel Margin="5 0 0 0">
+                <TextBlock Text="Characters" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <ListBox Name="lstChars"  Items="{Binding WorldPerso}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="190"/>
+              </StackPanel>
+              <StackPanel Margin="5 0 0 0">
+                <TextBlock Text="Chracters Items" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <ListBox Name="lstItems" Items="{Binding WorldItems}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="190"/>
+              </StackPanel>
+               -->
           </TabItem>
           <TabItem>
             <TabItem.Header>
