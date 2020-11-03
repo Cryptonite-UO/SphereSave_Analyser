@@ -56,7 +56,6 @@ namespace SphereExplorer.ViewModels
                 accounts.Add(acc);
             }
             Accounts = new ObservableCollection<Account>(accounts.OrderBy(x => x.Name));
-            WorldPerso = new ObservableCollection<WorldChar>(Reader.WorldCharacters.Where(x => x.IsPlayer).OrderBy(x => x.name).Take(5));
         }
     }
 }

@@ -112,12 +112,25 @@ namespace SphereSave_Analyser
 
             Console.WriteLine($"il y as {anvils.Count()} anvil dans le monde");
 
+            //***********Get All Static items ********************
+            GetAllStaticItems();
+
             //********************Get item For Account *********************
             GetItemForAccount("Dixonzegm");
-
+            
             Console.ReadLine();
         }
 
+        public static void GetAllStaticItems()
+        {
+            foreach (var c in reader.WorldItems)
+            {
+                if ((c.attr & (int)Flags.ATTR_STATIC) > 0)
+                {
+                    Console.WriteLine($"Item static P : {c.p} id : {c.id}");
+                }
+            }
+        }
         //********************Get item For Account *********************
         public static void GetItemForAccount(string account)
         {

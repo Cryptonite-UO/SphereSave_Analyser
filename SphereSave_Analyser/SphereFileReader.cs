@@ -2162,4 +2162,41 @@ namespace SphereSave_Analyser
             return BlockType.Unknown;
         }
     }
+    public enum Flags
+    {
+        ATTR_IDENTIFIED = 0x0001,				// This is the identified name. ???
+        ATTR_DECAY = 0x0002,               // Timer currently set to decay.
+        ATTR_NEWBIE = 0x0004,           // Not lost on death or sellable ?
+        ATTR_MOVE_ALWAYS = 0x0008,          // Always movable (else Default as stored in client) (even if MUL says not movalble) NEVER DECAYS !
+        ATTR_MOVE_NEVER = 0x0010,           // Never movable (else Default as stored in client) NEVER DECAYS !
+        ATTR_MAGIC = 0x0020,            // DON'T SET THIS WHILE WORN! This item is magic as apposed to marked or markable.
+        ATTR_OWNED = 0x0040,            // This is owned by the town. You need to steal it. NEVER DECAYS !
+        ATTR_INVIS = 0x0080,        // Gray hidden item (to GM's or owners?)
+        ATTR_CURSED = 0x0100,            // Can not be insured. Will always fall to the corpse, even if somehow blessed or insured.
+                                         //  OSI: Cannot be blessed (with an Item Bless Deed, Personal Bless Deed, or Clothing Bless Deed and can't be sent to the bank with a Bag of Sending)
+        ATTR_CURSED2 = 0x0200,          // cursed damned unholy
+        ATTR_BLESSED = 0x0400,           // Stay in your backpack when you die, Be placed into character's backpack upon resurrection if equipped before death,
+                                         //  Cannot be stolen by using the stealing skill, Cannot be insured
+        ATTR_BLESSED2 = 0x0800,         // blessed sacred holy
+        ATTR_FORSALE = 0x1000,          // For sale on a vendor.
+        ATTR_STOLEN = 0x2000,           // The item is hot. m_uidLink = previous owner.
+        ATTR_CAN_DECAY = 0x4000,                // This item can decay. but it would seem that it would not (ATTR_MOVE_NEVER etc)
+        ATTR_STATIC = 0x8000,           // WorldForge merge marker. (used for statics saves)
+                                        // Not listed by AxisII
+        ATTR_EXCEPTIONAL = 0x10000,             // Is Exceptional
+        ATTR_ENCHANTED = 0x20000,               // Is Enchanted
+        ATTR_IMBUED = 0x40000,              // Is Imbued
+        ATTR_QUESTITEM = 0x80000,               // Is Quest Item
+        ATTR_INSURED = 0x100000,        // Is Insured
+        ATTR_NODROP = 0x200000,         // No-drop
+        ATTR_NOTRADE = 0x400000,        // No-trade
+        ATTR_ARTIFACT = 0x800000,       // Artifact
+        ATTR_LOCKEDDOWN = 0x1000000,        // Is Locked Down
+        ATTR_SECURE = 0x2000000,        // Is Secure
+        ATTR_REFORGED = 0x4000000,  // Is Runic Reforged.
+        ATTR_OPENED = 0x8000000,        // Is Door Opened.
+        ATTR_SHARDBOUND = 0x10000000,
+        ATTR_ACCOUNTBOUND = 0x20000000,
+        ATTR_CHARACTERBOUND = 0x40000000,
+    };
 }
