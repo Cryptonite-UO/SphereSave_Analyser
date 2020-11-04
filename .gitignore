@@ -349,4 +349,4 @@ healthchecksdb
 MigrationBackup/
 *.DS_Store
 *.json
-App.config
+#App.config

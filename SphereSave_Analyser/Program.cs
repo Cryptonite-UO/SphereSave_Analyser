@@ -26,100 +26,126 @@ namespace SphereSave_Analyser
             {
                 Console.WriteLine("Exeption : {0}",e);
             }
-            //At this point, you can script specific demand
+
+
+            //************************************************************
+            //************************************************************
+            //BELLOW THIS LINE, you can script specific for an AUTO REPORT
+            Console.WriteLine("Generating report... in {0}", Report.dirpathreport);
+            String Nameoffile = DateTime.Now.ToString("yyy.MM.dd") + " Custom report";
+            Report.Createfile(Nameoffile);
 
             //********************CALCULATION OF GOLD IN THE GAME*********************
-            var gold = from obj in reader.WorldItems
-                       where obj.id == "i_gold"
-                       select obj;
-
-            int amount = 1;
-            int amount2 = 0;
-            int amountcheque = 0;
-            foreach (var o in gold)
+            if (Report.Gold_report == 1)
             {
-                    amount += o.amount;
+                Report.Write("****************************************************", Nameoffile);
+                var gold = from obj in reader.WorldItems
+                        where obj.id == "i_gold"
+                        select obj;
+
+                int amount = 1;
+                int amount2 = 0;
+                int amountcheque = 0;
+                foreach (var o in gold)
+                {
+                        amount += o.amount;
+                }
+
+               var cheque = from obj in reader.WorldItems
+                           where obj.id == "i_bank_check"
+                           select obj;
+
+                foreach (var c in cheque)
+                {
+                    amount += c.amount * Util.StringHexToInt(c.more1);
+                    amount2 += c.amount * Util.StringHexToInt(c.more1);
+                    amountcheque += c.amount;
+                }
+                Report.Write("There is "+ amount +" gold in the game", Nameoffile);
+                if (amount2 != 0)
+                {
+                    Report.Write("Including "+ amount2 + " gold split between "+ amountcheque + " check", Nameoffile);
+                }
             }
-
-           var cheque = from obj in reader.WorldItems
-                       where obj.id == "i_bank_check"
-                       select obj;
-
-            foreach (var c in cheque)
-            {
-                amount += c.amount * Util.StringHexToInt(c.more1);
-                amount2 += c.amount * Util.StringHexToInt(c.more1);
-                amountcheque += c.amount;
-            }
-
-            Console.WriteLine("There is {0} gold in the game", amount);
-            if (amount2 != 0)
-            {
-                Console.WriteLine("Including {1} gold split between {0} check", amountcheque, amount2);
-            }
-
 
             //********************Sort list of item*********************
-            Console.WriteLine("****************************************************");
-            var queryitem = from item in reader.WorldItems
-                        group item.id by item.id into g
-                        let count = g.Count()
-                        orderby count descending
-                        select new { Id = g.Key, Nombre = count };
-
-            foreach (var x in queryitem)
+            if (Report.Item_report == 1)
             {
-                if (x.Nombre > 100)
+                Report.Write("****************************************************************", Nameoffile);
+                Report.Write("There a list of all item in the world present 50 or more times", Nameoffile);
+                Report.Write("There a total of " + reader.WorldItems.Count() + " Item", Nameoffile);
+                var queryitem = from item in reader.WorldItems
+                            group item.id by item.id into g
+                            let count = g.Count()
+                            orderby count descending
+                            select new { Id = g.Key, Nombre = count };
+
+                foreach (var x in queryitem)
                 {
-                    Console.WriteLine("id: " + x.Id + " Count: " + x.Nombre);
+                    if (x.Nombre > 50)
+                    {
+                        Report.Write("id: " + x.Id + " Count: " + x.Nombre, Nameoffile);
+                    }
                 }
             }
 
             //********************Sort list of character*********************
-            Console.WriteLine("****************************************************");
-            var querychar = from item in reader.WorldCharacters
-                        group item.id by item.id into g
-                        let count = g.Count()
-                        orderby count descending
-                        select new { Id = g.Key, Nombre = count };
-
-            foreach (var x in querychar)
+            if (Report.Npc_report == 1)
             {
-                if (x.Nombre > 100)
+                Report.Write("******************************************************************", Nameoffile);
+                Report.Write("There a list of all NPC in the world present 50 or more times", Nameoffile);
+                Report.Write("There a total of "+ reader.WorldCharacters.Count() +" NPC", Nameoffile);
+                var querychar = from item in reader.WorldCharacters
+                            group item.id by item.id into g
+                            let count = g.Count()
+                            orderby count descending
+                            select new { Id = g.Key, Nombre = count };
+
+                foreach (var x in querychar)
                 {
-                    Console.WriteLine("id: " + x.Id + " Count: " + x.Nombre);
+                    if (x.Nombre > 50)
+                    {
+                        Report.Write("id: " + x.Id + " Count: " + x.Nombre, Nameoffile);
+                    }
                 }
             }
 
+            //***********Get All Static items ********************
+            //GetAllStaticItems();
 
             //********************List all character with a specific skill*********************
-            Console.WriteLine("****************************************************");
-            var skills = from obj in reader.WorldCharacters
-                       where obj.healing >= 1500
-                       select obj;
+            //Console.WriteLine("****************************************************");
+            //var skills = from obj in reader.WorldCharacters
+            //           where obj.healing >= 1500
+            //           select obj;
 
-            foreach (var o in skills)
-            {
-                Console.WriteLine($"Le personnage {o.name} a {o.healing} de Healing");
-            }
+            //foreach (var o in skills)
+            //{
+            //    Console.WriteLine($"Le personnage {o.name} a {o.healing} de Healing");
+            //}
 
             //********************Make a specific count of an item*********************
-            Console.WriteLine("****************************************************");
-            var anvils = from obj in reader.WorldItems
-                       where obj.id == "i_anvil"
-                       select obj;
+            //Console.WriteLine("****************************************************");
+            //var anvils = from obj in reader.WorldItems
+            //           where obj.id == "i_anvil"
+            //           select obj;
 
-            Console.WriteLine($"il y as {anvils.Count()} anvil dans le monde");
-
-            //***********Get All Static items ********************
-            GetAllStaticItems();
+            //Console.WriteLine($"il y as {anvils.Count()} anvil dans le monde");
 
             //********************Get item For Account *********************
-            GetItemForAccount("Dixonzegm");
-            
+            //GetItemForAccount("Dixonzegm");
+
+
+            Console.WriteLine("Report done... You can close this windows");
             Console.ReadLine();
+            
         }
 
+
+
+        //***********************************************************
+        //*****************************FUNCTION**********************
+        //***********************************************************
         public static void GetAllStaticItems()
         {
             foreach (var c in reader.WorldItems)

@@ -15,13 +15,16 @@ namespace SphereSave_Analyser
 
        public static class Report
     {
-        private static string dirpathreport = ConfigurationManager.AppSettings["dirpathreport"];
-    
+        public static string dirpathreport = ConfigurationManager.AppSettings["dirpathreport"];
+        private static string shardName = ConfigurationManager.AppSettings["shardName"];
+        public static int Item_report = Util.StringHexToInt(ConfigurationManager.AppSettings["Item_report"]);
+        public static int Gold_report = Util.StringHexToInt(ConfigurationManager.AppSettings["Gold_report"]);
+        public static int Npc_report = Util.StringHexToInt(ConfigurationManager.AppSettings["Npc_report"]);
         public static void Createfile(string title)
             //Create the file and erase the old one with the same name
         {
             // Create a string array with head of file
-            string[] head = {"THIS REPORT WAS GENERATE AUTOMATICALLY BY SPHERESAVE_ANALYSER", "********************************" };
+            string[] head = {"THIS REPORT WAS GENERATE AUTOMATICALLY BY SPHERESAVE_ANALYSER", $"FOR THE SHARD {shardName}" };
 
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(dirpathreport, $"{title}.txt")))
             {
