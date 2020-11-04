@@ -15,6 +15,7 @@ namespace SphereSave_Analyser
 
        public static class Report
     {
+        //TODO utiliser les Strings/int déclaré a une place
         public static string dirpathreport = ConfigurationManager.AppSettings["dirpathreport"];
         private static string shardName = ConfigurationManager.AppSettings["shardName"];
         public static int Item_report = Util.StringHexToInt(ConfigurationManager.AppSettings["Item_report"]);

@@ -238,6 +238,7 @@ namespace SphereSave_Analyser
 
     public class SphereFileReader
     {
+        // TODO utiliser la string dirpathsave de programme
         public string dirpathsave = ConfigurationManager.AppSettings["dirpathsave"];
         public bool AutoGenCode; //si trouve des nouvelle propriter va generer le code pour le traduire
 
