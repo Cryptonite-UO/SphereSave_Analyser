@@ -13,6 +13,8 @@ using Avalonia.Controls.ApplicationLifetimes;
 
 namespace SphereExplorer.ViewModels
 {
+
+
     public class Account
     {
         public string Name;
@@ -43,6 +45,16 @@ namespace SphereExplorer.ViewModels
             set
             {
                 this.RaiseAndSetIfChanged(ref accounts, value);
+            }
+        }
+
+        private string accountsString="Account";
+        public string AccountsString
+        {
+            get => accountsString;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref accountsString, value);
             }
         }
 
@@ -88,7 +100,7 @@ namespace SphereExplorer.ViewModels
 
         private void ReloadData()
         {
-            var query = reader.WorldCharacters.GroupBy(x => x.account);
+           var query = reader.WorldCharacters.GroupBy(x => x.account);
 
             List<Account> accounts = new List<Account>();
 
@@ -105,6 +117,7 @@ namespace SphereExplorer.ViewModels
                 accounts.Add(acc);
             }
             Accounts = new ObservableCollection<Account>(accounts.OrderBy(x => x.Name));
+            AccountsString = $"Account ({Accounts.Count()})";
             StaticItems = GetAllStaticItems();
         }
 

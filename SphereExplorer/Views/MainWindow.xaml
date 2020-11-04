@@ -61,7 +61,7 @@
           <TabItem Header="Accounts" VerticalContentAlignment="Center">
             <StackPanel Orientation="Horizontal">
               <StackPanel Margin="5 0 0 0">
-                <TextBlock Text="Accounts" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding AccountsString}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <ListBox Name="lstAccs" HorizontalAlignment="Left" Items="{Binding Accounts}"  Width="150" Height="200"/>
               </StackPanel>
               <StackPanel Margin="5 0 0 0">
