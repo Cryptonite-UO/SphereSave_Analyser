@@ -48,14 +48,13 @@ namespace SphereExplorer.ViewModels
             }
         }
 
-        private string accountsstring;
-
+        private string accountsString="Account";
         public string AccountsString
         {
-            get => accountsstring;
+            get => accountsString;
             set
             {
-                this.RaiseAndSetIfChanged(ref accountsstring, value);
+                this.RaiseAndSetIfChanged(ref accountsString, value);
             }
         }
 
@@ -101,7 +100,6 @@ namespace SphereExplorer.ViewModels
 
         private void ReloadData()
         {
-            int Accounts_count = 0;
            var query = reader.WorldCharacters.GroupBy(x => x.account);
 
             List<Account> accounts = new List<Account>();
@@ -119,8 +117,7 @@ namespace SphereExplorer.ViewModels
                 accounts.Add(acc);
             }
             Accounts = new ObservableCollection<Account>(accounts.OrderBy(x => x.Name));
-            Accounts_count = Accounts.Count();
-            accountsstring = $"Account ({Accounts_count})";
+            AccountsString = $"Account ({Accounts.Count()})";
             StaticItems = GetAllStaticItems();
         }
 
