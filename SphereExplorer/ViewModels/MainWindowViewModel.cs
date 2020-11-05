@@ -96,6 +96,7 @@ namespace SphereExplorer.ViewModels
             reader.ReadFileToObj(path + "/save/sphereworld.scp", SphereFileType.SphereWorld);
             reader.ReadFileToObj(path + "/save/spherechars.scp", SphereFileType.SphereWorld);
             ReloadData();
+            //IniFile.MyIni.Write("dirpathsphere", path);
         }
 
         private void ReloadData()
