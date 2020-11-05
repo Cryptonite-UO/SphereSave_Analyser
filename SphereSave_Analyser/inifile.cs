@@ -9,6 +9,15 @@ namespace SphereSave_Analyser
     {
         string Path;
         string EXE = Assembly.GetExecutingAssembly().GetName().Name;
+        public static IniFile MyIni = new IniFile(); //read the ini file in the repository of the .exe
+
+        //Get all the ini setting
+        public static string dirpathsphere = MyIni.Read("dirpathsphere");
+        public static string dirpathreport = MyIni.Read("dirpathreport");
+        public static string shardName = MyIni.Read("shardName");
+        public static int Item_report = Util.StringHexToInt(MyIni.Read("Item_report"));
+        public static int Npc_report = Util.StringHexToInt(MyIni.Read("Npc_report"));
+        public static int Gold_report = Util.StringHexToInt(MyIni.Read("Gold_report"));
 
         [DllImport("kernel32", CharSet = CharSet.Unicode)]
         static extern long WritePrivateProfileString(string Section, string Key, string Value, string FilePath);

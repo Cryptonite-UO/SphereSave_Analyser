@@ -14,24 +14,14 @@ namespace SphereSave_Analyser
     {
        
         private static SphereFileReader reader;
-        public static IniFile MyIni = new IniFile();
+
         static void Main(string[] args)
         {
-            /********Usage
-            MyIni.Read();
-            */
-            string dirpathsave = MyIni.Read("dirpathsave");
-            string dirpathreport = MyIni.Read("dirpathreport");
-            string shardName = MyIni.Read("shardName");
-            int Item_report = Util.StringHexToInt(MyIni.Read("Item_report"));
-            int Npc_report = Util.StringHexToInt(MyIni.Read("Npc_report"));
-            int Gold_report = Util.StringHexToInt(MyIni.Read("Gold_report"));
-
             reader = new SphereFileReader();
             try
             {
-                reader.ReadFileToObj(dirpathsave + "/sphereworld.scp", SphereFileType.SphereWorld);
-                reader.ReadFileToObj(dirpathsave + "/spherechars.scp", SphereFileType.SphereChars);
+                reader.ReadFileToObj(IniFile.dirpathsphere + "/save/sphereworld.scp", SphereFileType.SphereWorld);
+                reader.ReadFileToObj(IniFile.dirpathsphere + "/save/spherechars.scp", SphereFileType.SphereChars);
             }
             catch (Exception e)
             {
@@ -42,12 +32,12 @@ namespace SphereSave_Analyser
             //************************************************************
             //************************************************************
             //BELLOW THIS LINE, you can script specific for an AUTO REPORT
-            Console.WriteLine("Generating report... in {0}", dirpathreport);
+            Console.WriteLine("Generating report... in {0}", IniFile.dirpathreport);
             String Nameoffile = DateTime.Now.ToString("yyy.MM.dd") + " Custom report";
             Report.Createfile(Nameoffile);
 
             //********************CALCULATION OF GOLD IN THE GAME*********************
-            if (Gold_report == 1)
+            if (IniFile.Gold_report == 1)
             {
                 Report.Write("****************************************************", Nameoffile);
                 var gold = from obj in reader.WorldItems
@@ -80,7 +70,7 @@ namespace SphereSave_Analyser
             }
 
             //********************Sort list of item*********************
-            if (Item_report == 1)
+            if (IniFile.Item_report == 1)
             {
                 Report.Write("****************************************************************", Nameoffile);
                 Report.Write("There a list of all item in the world present 50 or more times", Nameoffile);
@@ -101,7 +91,7 @@ namespace SphereSave_Analyser
             }
 
             //********************Sort list of character*********************
-            if (Npc_report == 1)
+            if (IniFile.Npc_report == 1)
             {
                 Report.Write("******************************************************************", Nameoffile);
                 Report.Write("There a list of all NPC in the world present 50 or more times", Nameoffile);
