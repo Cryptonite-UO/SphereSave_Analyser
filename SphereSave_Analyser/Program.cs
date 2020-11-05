@@ -14,10 +14,12 @@ namespace SphereSave_Analyser
     {
        
         private static SphereFileReader reader;
-
+        public static IniFile MyIni = new IniFile();
         static void Main(string[] args)
         {
-            var MyIni = new IniFile();
+            /********Usage
+            MyIni.Read();
+            */
             string dirpathsave = MyIni.Read("dirpathsave");
             string dirpathreport = MyIni.Read("dirpathreport");
             string shardName = MyIni.Read("shardName");

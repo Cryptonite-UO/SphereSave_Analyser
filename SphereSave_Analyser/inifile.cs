@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SphereSave_Analyser
 {
-    class IniFile
+    public class IniFile
     {
         string Path;
         string EXE = Assembly.GetExecutingAssembly().GetName().Name;
