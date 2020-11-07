@@ -4,7 +4,12 @@ VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SphereSave_Analyser", "SphereSave_Analyser\SphereSave_Analyser.csproj", "{65D85BFE-1735-4441-8EA2-C4888507D0D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SphereSaveExplorer", "SphereExplorer\SphereSaveExplorer.csproj", "{E59B9236-4956-42F8-AF0C-5F805774753C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SphereSaveExplorer", "SphereExplorer\SphereSaveExplorer.csproj", "{E59B9236-4956-42F8-AF0C-5F805774753C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{08808B7D-5C6D-499D-8EEB-FEFDE3DE71CB}"
+	ProjectSection(SolutionItems) = preProject
+		SphereSave_Analyser.ini = SphereSave_Analyser.ini
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
