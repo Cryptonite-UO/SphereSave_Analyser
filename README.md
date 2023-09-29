@@ -11,6 +11,8 @@ Here some information you will be able to see
 - Qte of gold in circulation on your world
 - List of each item you have and their occurence
 
+![image](https://github.com/Cryptonite-UO/SphereSave_Analyser/assets/51728381/9516d000-43bf-4a34-a284-6b8f64fd4ce2)
+
 
 # How
 
