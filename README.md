@@ -12,6 +12,7 @@ Here some information you will be able to see
 - List of each item you have and their occurence
 
 ![image](https://github.com/Cryptonite-UO/SphereSave_Analyser/assets/51728381/9516d000-43bf-4a34-a284-6b8f64fd4ce2)
+![image](https://github.com/Cryptonite-UO/SphereSave_Analyser/assets/51728381/ba5e70a1-1c22-4974-bfc8-9f8312951823)
 
 
 # How
